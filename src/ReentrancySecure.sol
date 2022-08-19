@@ -1,18 +1,27 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.15;
-// import "hardhat/console.sol";
-import "forge-std/console2.sol";
 
 // INSECURE
 
-contract EtherStore {
+contract ReEntrancyGuard {
+    bool internal locked;
+
+    modifier noReentrant() {
+        require(!locked, "No re-entrancy");
+        locked = true;
+        _;
+        locked = false;
+    }
+}
+
+contract EtherStore is ReEntrancyGuard {
     mapping(address => uint256) public balances;
 
     function deposit() public payable {
         balances[msg.sender] += msg.value;
     }
 
-    function withdraw() public {
+    function withdraw() public noReentrant {
         uint256 bal = balances[msg.sender];
         require(bal > 0);
 
@@ -44,8 +53,6 @@ contract Attack {
 
     function attack() external payable {
         require(msg.value >= 1 ether);
-        // console2.logAddress(msg.sender);
-
         etherStore.deposit{value: 1 ether}();
         etherStore.withdraw();
     }
