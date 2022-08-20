@@ -8,7 +8,7 @@ import "forge-std/console2.sol";
 
 // import {Attacker} from "src/ReentrancyInsecure.sol";
 
-contract ReentrancyInsecure is Test {
+contract ReentrancySecure is Test {
     using stdStorage for StdStorage;
 
     Attack attack;
