@@ -1,4 +1,4 @@
-pragma solidity 0.4.24;
+pragma solidity 0.8.13;
 
 import "public/ERC20.sol";
 import "public/ReentrancyGuard.sol";
