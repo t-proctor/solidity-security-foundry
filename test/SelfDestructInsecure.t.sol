@@ -19,7 +19,7 @@ contract SelfDestructInsecure is Test {
     // VM Cheatcodes can be found in ./lib/forge-std/src/Vm.sol
     // Or at
     function testSelfDestruct() external {
-        // Attack.attack
+        //          Attack.attack
         // - EtherGame.deposit
         // - EtherGame.withdraw
         // - Attack fallback (receives 1 Ether)
