@@ -5,8 +5,6 @@ import "forge-std/Test.sol";
 
 import {Attack, EtherStore} from "src/ReentrancyInsecure.sol";
 
-// import {Attacker} from "src/ReentrancyInsecure.sol";
-
 contract ReentrancyInsecure is Test {
     using stdStorage for StdStorage;
 
